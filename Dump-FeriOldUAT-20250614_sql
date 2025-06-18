@@ -1,0 +1,2439 @@
+-- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
+--
+-- Host: localhost    Database: feri_old_uat
+-- ------------------------------------------------------
+-- Server version	8.0.42
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `acces`
+--
+
+DROP TABLE IF EXISTS `acces`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `acces` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `codeuser` int NOT NULL,
+  `idpermission` int NOT NULL,
+  `choix` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8846 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `acces_after_insert` AFTER INSERT ON `acces` FOR EACH ROW BEGIN
+    INSERT INTO app_activity_logs (table_name, row_id, action, new_value, user)
+    VALUES (
+        'acces',
+        NEW.id,
+        'INSERT',
+        JSON_OBJECT(
+            'id', NEW.id,
+            'codeuser', NEW.codeuser,
+            'idpermission', NEW.idpermission,
+            'choix', NEW.choix
+        ),
+        USER()
+    );
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `acces_after_update` AFTER UPDATE ON `acces` FOR EACH ROW BEGIN
+    INSERT INTO app_activity_logs (table_name, row_id, action, old_value, new_value, user)
+    VALUES (
+        'acces',
+        NEW.id,
+        'UPDATE',
+        JSON_OBJECT(
+            'id', OLD.id,
+            'codeuser', OLD.codeuser,
+            'idpermission', OLD.idpermission,
+            'choix', OLD.choix
+        ),
+        JSON_OBJECT(
+            'id', NEW.id,
+            'codeuser', NEW.codeuser,
+            'idpermission', NEW.idpermission,
+            'choix', NEW.choix
+        ),
+        USER()
+    );
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `acces_after_delete` AFTER DELETE ON `acces` FOR EACH ROW BEGIN
+    INSERT INTO app_activity_logs (table_name, row_id, action, old_value, user)
+    VALUES (
+        'acces',
+        OLD.id,
+        'DELETE',
+        JSON_OBJECT(
+            'id', OLD.id,
+            'codeuser', OLD.codeuser,
+            'idpermission', OLD.idpermission,
+            'choix', OLD.choix
+        ),
+        USER()
+    );
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `acces_menu`
+--
+
+DROP TABLE IF EXISTS `acces_menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `acces_menu` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `codeuser` int NOT NULL,
+  `idpermission` int NOT NULL,
+  `choix` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9149 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `activite_principale`
+--
+
+DROP TABLE IF EXISTS `activite_principale`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `activite_principale` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(50) NOT NULL,
+  `idsoussecteur` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `affdir`
+--
+
+DROP TABLE IF EXISTS `affdir`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `affdir` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `identite` int NOT NULL,
+  `plageuser` text NOT NULL,
+  `plageport` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `affectagportuaire`
+--
+
+DROP TABLE IF EXISTS `affectagportuaire`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `affectagportuaire` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Idagportuaire` int NOT NULL,
+  `Idaffectation` int NOT NULL DEFAULT '0',
+  `plagestatut` varchar(500) NOT NULL,
+  `typeaffect` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `INDX1` (`Idagportuaire`)
+) ENGINE=InnoDB AUTO_INCREMENT=740 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `affsousgroupe`
+--
+
+DROP TABLE IF EXISTS `affsousgroupe`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `affsousgroupe` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idsousgroupe` int NOT NULL,
+  `plagestatut` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `agent_portuaire`
+--
+
+DROP TABLE IF EXISTS `agent_portuaire`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `agent_portuaire` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(8) NOT NULL,
+  `mandataire_id` int DEFAULT NULL,
+  `adresse` varchar(500) DEFAULT NULL,
+  `telephone` varchar(250) DEFAULT NULL,
+  `email` varchar(500) DEFAULT NULL,
+  `fax` varchar(100) DEFAULT NULL,
+  `nom` varchar(100) DEFAULT NULL,
+  `date_debut_contrat` date NOT NULL,
+  `date_fin_contrat` date NOT NULL,
+  `zone` smallint DEFAULT '0',
+  `actif` int NOT NULL DEFAULT '1',
+  `idlieu` int DEFAULT NULL,
+  `plagemode` varchar(52) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `commission` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `IDX_D60EEC2858207E03` (`mandataire_id`),
+  CONSTRAINT `FK_D60EEC2858207E03` FOREIGN KEY (`mandataire_id`) REFERENCES `mandataire` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `agmaritime`
+--
+
+DROP TABLE IF EXISTS `agmaritime`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `agmaritime` (
+  `nomagmaritime` varchar(50) NOT NULL,
+  `refagmaritime` varchar(50) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `codeagmaritime` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=591 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `app_activity_logs`
+--
+
+DROP TABLE IF EXISTS `app_activity_logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `app_activity_logs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(255) NOT NULL,
+  `row_id` int NOT NULL,
+  `action` varchar(10) NOT NULL,
+  `old_value` text,
+  `new_value` text,
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `user` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `arrivee`
+--
+
+DROP TABLE IF EXISTS `arrivee`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `arrivee` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `trafic` int NOT NULL,
+  `nommoyen_transport` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `numvoyage` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `date_arrivee` date NOT NULL,
+  `mode_transport` int NOT NULL,
+  `idlieu_arrivee` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKModetrans` (`mode_transport`),
+  KEY `FKTraffic` (`trafic`),
+  CONSTRAINT `FKModetrans` FOREIGN KEY (`mode_transport`) REFERENCES `mode_transport` (`id`),
+  CONSTRAINT `FKTraffic` FOREIGN KEY (`trafic`) REFERENCES `mouvement` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `banques`
+--
+
+DROP TABLE IF EXISTS `banques`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `banques` (
+  `libelle` varchar(50) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(5) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=306 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `bordereau`
+--
+
+DROP TABLE IF EXISTS `bordereau`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bordereau` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `banque_id` int DEFAULT NULL,
+  `devise_id` int DEFAULT NULL,
+  `taux` decimal(15,3) NOT NULL,
+  `montant` decimal(15,3) NOT NULL,
+  `numero` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `date_crea` datetime NOT NULL,
+  `date_last` datetime DEFAULT NULL,
+  `is_paie` tinyint(1) DEFAULT NULL,
+  `user_create_id` int DEFAULT NULL,
+  `piece` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_F7B4C561F55AE19E` (`numero`),
+  KEY `IDX_F7B4C56137E080D9` (`banque_id`),
+  KEY `IDX_F7B4C561F4445056` (`devise_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cargaison`
+--
+
+DROP TABLE IF EXISTS `cargaison`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cargaison` (
+  `id` int NOT NULL,
+  `date_etabl` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `devise_fob_id` int DEFAULT NULL,
+  `fret_base` decimal(15,2) DEFAULT NULL,
+  `montant_fret` decimal(15,2) DEFAULT NULL,
+  `frais_additionnel` decimal(14,2) DEFAULT NULL,
+  `montant_assurance` decimal(15,2) NOT NULL,
+  `montant_fob` decimal(15,2) NOT NULL,
+  `montant_baf` decimal(15,2) NOT NULL,
+  `montant_caf` decimal(15,2) NOT NULL,
+  `montant_surch_ot_hc` decimal(15,2) NOT NULL,
+  `montant_congo_surch` decimal(15,2) NOT NULL,
+  `montant_autre_surch` decimal(15,2) NOT NULL,
+  `devise_fret_id` int DEFAULT NULL,
+  `incoterm_id` int DEFAULT NULL,
+  `mode_paie_id` int DEFAULT NULL,
+  `feri_id` int DEFAULT NULL,
+  `pays_origine_id` int DEFAULT NULL,
+  `pays_destination_id` int DEFAULT NULL,
+  `poids_total` decimal(15,2) DEFAULT NULL,
+  `volume_total` decimal(15,2) DEFAULT NULL,
+  `up_total` decimal(15,2) DEFAULT NULL,
+  `teu_total` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `carte_abonnement`
+--
+
+DROP TABLE IF EXISTS `carte_abonnement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `carte_abonnement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `souscripteur_id` int DEFAULT NULL,
+  `annee` varchar(4) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `service_id` int DEFAULT NULL,
+  `devise_id` int DEFAULT NULL,
+  `numero_recette` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `montant` decimal(15,2) DEFAULT NULL,
+  `date_paiement` date DEFAULT NULL,
+  `valeur_taux` double NOT NULL DEFAULT '1.15',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3302 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `chapitre_export`
+--
+
+DROP TABLE IF EXISTS `chapitre_export`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chapitre_export` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(12) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `unite` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `type` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT 'LOURD',
+  `prix` int NOT NULL DEFAULT '3',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7105 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `chapproduit`
+--
+
+DROP TABLE IF EXISTS `chapproduit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chapproduit` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(8) NOT NULL,
+  `description` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10149 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `chargement_condition`
+--
+
+DROP TABLE IF EXISTS `chargement_condition`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chargement_condition` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `feri_id` int DEFAULT NULL,
+  `date_crea` datetime NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `type` smallint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_54E6460C710F2F4C` (`feri_id`),
+  CONSTRAINT `FK_54E6460C710F2F4C` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `code_harmonise`
+--
+
+DROP TABLE IF EXISTS `code_harmonise`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `code_harmonise` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(4) NOT NULL,
+  `description` text NOT NULL,
+  `idchapproduit` int NOT NULL,
+  `typeproduit` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9535 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `code_imo`
+--
+
+DROP TABLE IF EXISTS `code_imo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `code_imo` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(2) NOT NULL,
+  `libelle` varchar(100) NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `codeiso` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `code_sh`
+--
+
+DROP TABLE IF EXISTS `code_sh`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `code_sh` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(100) NOT NULL,
+  `code` varchar(5) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `commission_intervention`
+--
+
+DROP TABLE IF EXISTS `commission_intervention`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `commission_intervention` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `feri_id` int DEFAULT NULL,
+  `continuite_id` int DEFAULT NULL,
+  `devise_id` int NOT NULL,
+  `montant_fret` double NOT NULL,
+  `tva` double NOT NULL,
+  `montant_facture` double NOT NULL DEFAULT '0',
+  `date_cion` datetime NOT NULL,
+  `numero` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `montant_paye` double NOT NULL DEFAULT '0',
+  `taux_change` double NOT NULL,
+  `is_draft` smallint NOT NULL,
+  `taux_fret` double NOT NULL,
+  `devise_paie_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_5F7E856D710F2F4C` (`feri_id`),
+  KEY `IDX_5F7E856D262BE2C3` (`continuite_id`),
+  KEY `IDX_5F7E856DF4445056` (`devise_id`),
+  KEY `IDX_5F7E856D1E6E85F0` (`devise_paie_id`),
+  CONSTRAINT `FK_5F7E856D1E6E85F0` FOREIGN KEY (`devise_paie_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_5F7E856D262BE2C3` FOREIGN KEY (`continuite_id`) REFERENCES `continuite` (`id`),
+  CONSTRAINT `FK_5F7E856D710F2F4C` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`),
+  CONSTRAINT `FK_5F7E856DF4445056` FOREIGN KEY (`devise_id`) REFERENCES `devise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39024 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `compteur`
+--
+
+DROP TABLE IF EXISTS `compteur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `compteur` (
+  `numfiche` int NOT NULL,
+  `numfere` int NOT NULL DEFAULT '1',
+  `numvalidation` int NOT NULL,
+  `numero_validation_export` int NOT NULL DEFAULT '1',
+  `numeroProformat` int NOT NULL,
+  `numero_proformat_export` int NOT NULL DEFAULT '1',
+  `numeroFacture` int NOT NULL,
+  `numero_facture_ad` int NOT NULL DEFAULT '1',
+  `cion_intervention` int NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `conditionnement`
+--
+
+DROP TABLE IF EXISTS `conditionnement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `conditionnement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `conteneur`
+--
+
+DROP TABLE IF EXISTS `conteneur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `conteneur` (
+  `id` int NOT NULL,
+  `mode_condition_id` int NOT NULL,
+  `format` int NOT NULL,
+  `type` smallint NOT NULL,
+  `modele` smallint NOT NULL,
+  `numero` varchar(25) NOT NULL,
+  `numscelle` varchar(15) DEFAULT NULL,
+  `poids` int NOT NULL,
+  `volume` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `continuite`
+--
+
+DROP TABLE IF EXISTS `continuite`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `continuite` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `feri_id` int DEFAULT NULL,
+  `mode_transport_id` int DEFAULT NULL,
+  `lieu_depart` varchar(255) NOT NULL,
+  `date_arrive` timestamp NULL DEFAULT NULL,
+  `lieu_arrive` varchar(255) NOT NULL,
+  `destination_final` varchar(255) NOT NULL,
+  `poids` decimal(15,3) DEFAULT NULL,
+  `volume` decimal(15,3) DEFAULT NULL,
+  `transitaire` varchar(255) NOT NULL,
+  `devise_id` int DEFAULT NULL,
+  `representant` varchar(255) DEFAULT NULL,
+  `num_declaration` varchar(255) DEFAULT NULL,
+  `transporteur` varchar(255) DEFAULT NULL,
+  `date_creation` timestamp NULL DEFAULT NULL,
+  `date_declaration` timestamp NULL DEFAULT NULL,
+  `montant_fret` decimal(15,3) DEFAULT NULL,
+  `agent_maritime_id` int DEFAULT NULL,
+  `immatriculation` varchar(65) DEFAULT NULL,
+  `numero` varchar(9) DEFAULT NULL,
+  `manifeste` varchar(255) DEFAULT NULL,
+  `attache` varchar(255) DEFAULT NULL,
+  `agent_portuaire_id` int DEFAULT NULL,
+  `definite` smallint NOT NULL DEFAULT '0',
+  `user_cree` varchar(5) DEFAULT NULL,
+  `user_print` varchar(50) DEFAULT NULL,
+  `prorata_fret` decimal(15,3) DEFAULT NULL,
+  `prorata_fob` decimal(15,3) DEFAULT NULL,
+  `prorata_ass` decimal(15,3) DEFAULT NULL,
+  `estactif` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_E353C15B710F2F4C` (`feri_id`),
+  KEY `IDX_E353C15B1305CBCC` (`mode_transport_id`),
+  KEY `IDX_E353C15BF4445056` (`devise_id`),
+  KEY `IDX_E353C15B8C5B0C5B` (`agent_maritime_id`),
+  KEY `IDX_E353C15B456C4359` (`agent_portuaire_id`),
+  CONSTRAINT `FK_E353C15B1305CBCC` FOREIGN KEY (`mode_transport_id`) REFERENCES `mode_transport` (`id`),
+  CONSTRAINT `FK_E353C15B456C4359` FOREIGN KEY (`agent_portuaire_id`) REFERENCES `agent_portuaire` (`id`),
+  CONSTRAINT `FK_E353C15B710F2F4C` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`),
+  CONSTRAINT `FK_E353C15B8C5B0C5B` FOREIGN KEY (`agent_maritime_id`) REFERENCES `agmaritime` (`id`),
+  CONSTRAINT `FK_E353C15BF4445056` FOREIGN KEY (`devise_id`) REFERENCES `devise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=157637 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `controler`
+--
+
+DROP TABLE IF EXISTS `controler`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `controler` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `feri_id` int DEFAULT NULL,
+  `criticite` smallint NOT NULL,
+  `commentaire` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `date_controle` datetime DEFAULT NULL,
+  `element_controle` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_C60D8AFB710F2F4C` (`feri_id`),
+  CONSTRAINT `FK_C60D8AFB710F2F4C` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36584 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `couverture`
+--
+
+DROP TABLE IF EXISTS `couverture`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `couverture` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `credit`
+--
+
+DROP TABLE IF EXISTS `credit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `credit` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `devise_id` int DEFAULT NULL,
+  `agent_portuaire_id` int DEFAULT NULL,
+  `solde_initial` decimal(15,2) DEFAULT NULL,
+  `solde` decimal(15,2) DEFAULT NULL,
+  `date_ouverture` date DEFAULT '1970-01-01',
+  PRIMARY KEY (`id`),
+  KEY `IDX_1CC16EFEF4445056` (`devise_id`),
+  KEY `IDX_1CC16EFE456C4359` (`agent_portuaire_id`),
+  CONSTRAINT `FK_1CC16EFE456C4359` FOREIGN KEY (`agent_portuaire_id`) REFERENCES `agent_portuaire` (`id`),
+  CONSTRAINT `FK_1CC16EFEF4445056` FOREIGN KEY (`devise_id`) REFERENCES `devise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `detail_conditionnement`
+--
+
+DROP TABLE IF EXISTS `detail_conditionnement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `detail_conditionnement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type_condition_id` int DEFAULT NULL,
+  `mode_conteneur_id` int DEFAULT NULL,
+  `feri_id` int NOT NULL,
+  `numero` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero_scelle` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `poids` decimal(15,3) DEFAULT NULL,
+  `poid_net` decimal(15,3) DEFAULT NULL,
+  `volume` decimal(15,3) DEFAULT NULL,
+  `unite_payante` decimal(15,3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_320C7F8CF3429B3` (`type_condition_id`),
+  KEY `IDX_320C7F8C7DE7AA84` (`mode_conteneur_id`),
+  KEY `IDX_320C7F8C710F2F4C` (`feri_id`),
+  CONSTRAINT `FK_320C7F8C710F2F4C` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`),
+  CONSTRAINT `FK_320C7F8C7DE7AA84` FOREIGN KEY (`mode_conteneur_id`) REFERENCES `modele_conteneur` (`id`),
+  CONSTRAINT `FK_320C7F8CF3429B3` FOREIGN KEY (`type_condition_id`) REFERENCES `type_conditionnement` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1295473 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `detail_conditionnement_export`
+--
+
+DROP TABLE IF EXISTS `detail_conditionnement_export`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `detail_conditionnement_export` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type_condition_id` int DEFAULT NULL,
+  `mode_conteneur_id` int DEFAULT NULL,
+  `fere_id` int NOT NULL,
+  `numero` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero_scelle` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `poids` decimal(15,3) DEFAULT NULL,
+  `poid_net` decimal(15,3) DEFAULT NULL,
+  `volume` decimal(15,3) DEFAULT NULL,
+  `unite_payante` decimal(15,3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_91AF13AEF3429B3` (`type_condition_id`),
+  KEY `IDX_91AF13AE7DE7AA84` (`mode_conteneur_id`),
+  KEY `IDX_91AF13AE3BD990F4` (`fere_id`),
+  CONSTRAINT `FK_91AF13AE3BD990F4` FOREIGN KEY (`fere_id`) REFERENCES `fere` (`id`),
+  CONSTRAINT `FK_91AF13AE7DE7AA84` FOREIGN KEY (`mode_conteneur_id`) REFERENCES `modele_conteneur` (`id`),
+  CONSTRAINT `FK_91AF13AEF3429B3` FOREIGN KEY (`type_condition_id`) REFERENCES `type_conditionnement` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=344251 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `detail_facture`
+--
+
+DROP TABLE IF EXISTS `detail_facture`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `detail_facture` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `feri_id` int DEFAULT NULL,
+  `libelle` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `unite` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `taux` double NOT NULL,
+  `quantite` double NOT NULL,
+  `total` double NOT NULL,
+  `type_conditionnement_id` int DEFAULT NULL,
+  `proformat_id` int DEFAULT NULL,
+  `facture_id` int DEFAULT NULL,
+  `is_complement` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `IDX_9949E4C5710F2F4C` (`feri_id`),
+  KEY `IDX_9949E4C56D435DE7` (`type_conditionnement_id`),
+  KEY `IDX_9949E4C5E91D11FF` (`proformat_id`),
+  KEY `IDX_9949E4C57F2DEE08` (`facture_id`),
+  CONSTRAINT `FK_9949E4C56D435DE7` FOREIGN KEY (`type_conditionnement_id`) REFERENCES `type_conditionnement` (`id`),
+  CONSTRAINT `FK_9949E4C5710F2F4C` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`),
+  CONSTRAINT `FK_9949E4C57F2DEE08` FOREIGN KEY (`facture_id`) REFERENCES `facture` (`id`),
+  CONSTRAINT `FK_9949E4C5E91D11FF` FOREIGN KEY (`proformat_id`) REFERENCES `facture_proformat` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=459451 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `detaismodetransagportuaire`
+--
+
+DROP TABLE IF EXISTS `detaismodetransagportuaire`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `detaismodetransagportuaire` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idagentportuaire` int NOT NULL,
+  `idmodetransport` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4342 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `devise`
+--
+
+DROP TABLE IF EXISTS `devise`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `devise` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `codeiso` varchar(7) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=264 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `direction`
+--
+
+DROP TABLE IF EXISTS `direction`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `direction` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `libelle` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `codecarte` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `idmandataire` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `emplacement`
+--
+
+DROP TABLE IF EXISTS `emplacement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `emplacement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(50) DEFAULT NULL,
+  `province_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `etat`
+--
+
+DROP TABLE IF EXISTS `etat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `etat` (
+  `id` int NOT NULL,
+  `libelle` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `exercicecarteab`
+--
+
+DROP TABLE IF EXISTS `exercicecarteab`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `exercicecarteab` (
+  `id` int NOT NULL,
+  `annee` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `facture`
+--
+
+DROP TABLE IF EXISTS `facture`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `facture` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `feri_id` int DEFAULT NULL,
+  `date_facture` datetime DEFAULT NULL,
+  `num_fac` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `montant` double DEFAULT '0',
+  `proformat_id` int DEFAULT NULL,
+  `ref_preuve` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `code_banque` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `date_paiement` datetime DEFAULT NULL,
+  `frais_admin` double DEFAULT '0',
+  `penalite` double DEFAULT '0',
+  `complement` double DEFAULT '0',
+  `compteur_note` int NOT NULL DEFAULT '0',
+  `devise_paye_id` int DEFAULT NULL,
+  `taux_change` double DEFAULT NULL,
+  `montant_paye` double DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unicite_facture_note` (`feri_id`,`proformat_id`,`complement`),
+  KEY `IDX_FE866410710F2F4C` (`feri_id`),
+  KEY `IDX_FE866410E91D11FF` (`proformat_id`),
+  KEY `IDX_FACDATE1` (`date_facture`),
+  KEY `IDX_FE8664107E8E1272` (`devise_paye_id`),
+  CONSTRAINT `FK_FE866410710F2F4C` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`),
+  CONSTRAINT `FK_FE8664107E8E1272` FOREIGN KEY (`devise_paye_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_FE866410E91D11FF` FOREIGN KEY (`proformat_id`) REFERENCES `facture_proformat` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=805601 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `facture_ad`
+--
+
+DROP TABLE IF EXISTS `facture_ad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `facture_ad` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `continuite_id` int DEFAULT NULL,
+  `numero` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `montant` double NOT NULL DEFAULT '0',
+  `tva` double NOT NULL,
+  `montant_penalite` double NOT NULL,
+  `devise_paye_id` int DEFAULT NULL,
+  `taux_change` double NOT NULL,
+  `date_facture_ad` datetime DEFAULT NULL,
+  `is_draft` smallint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_B7F46400262BE2C3` (`continuite_id`),
+  KEY `IDX_B7F464007E8E1272` (`devise_paye_id`),
+  CONSTRAINT `FK_B7F46400262BE2C3` FOREIGN KEY (`continuite_id`) REFERENCES `continuite` (`id`),
+  CONSTRAINT `FK_B7F464007E8E1272` FOREIGN KEY (`devise_paye_id`) REFERENCES `devise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11999 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `facture_export`
+--
+
+DROP TABLE IF EXISTS `facture_export`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `facture_export` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fere_id` int DEFAULT NULL,
+  `proformat_export_id` int DEFAULT NULL,
+  `date_facture` datetime DEFAULT NULL,
+  `num_fac` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `montant` double DEFAULT NULL,
+  `frais_admin` double NOT NULL DEFAULT '0',
+  `penalite` double NOT NULL DEFAULT '0',
+  `ref_preuve` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `date_paiement` datetime DEFAULT NULL,
+  `mode_paie_id` int DEFAULT NULL,
+  `banque_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_171B04333BD990F4` (`fere_id`),
+  KEY `IDX_171B0433D2723B63` (`proformat_export_id`),
+  KEY `IDX_171B043362E04A07` (`mode_paie_id`),
+  KEY `IDX_171B043337E080D9` (`banque_id`),
+  KEY `IDX_FACDATE2` (`date_facture`),
+  CONSTRAINT `FK_171B043337E080D9` FOREIGN KEY (`banque_id`) REFERENCES `banques` (`id`),
+  CONSTRAINT `FK_171B04333BD990F4` FOREIGN KEY (`fere_id`) REFERENCES `fere` (`id`),
+  CONSTRAINT `FK_171B043362E04A07` FOREIGN KEY (`mode_paie_id`) REFERENCES `mode_paiement` (`id`),
+  CONSTRAINT `FK_171B0433D2723B63` FOREIGN KEY (`proformat_export_id`) REFERENCES `facture_proformat_export` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=321752 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `facture_proformat`
+--
+
+DROP TABLE IF EXISTS `facture_proformat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `facture_proformat` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `feri_id` int DEFAULT NULL,
+  `numero` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `date_crea` datetime DEFAULT NULL,
+  `montant` double NOT NULL DEFAULT '0',
+  `userid` int NOT NULL,
+  `frais_admin` double DEFAULT '0',
+  `penalite` double DEFAULT '0',
+  `is_tva` smallint NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `IDX_20F19362710F2F4C` (`feri_id`),
+  KEY `IDX_DATEPRO1` (`date_crea`),
+  CONSTRAINT `FK_20F19362710F2F4C` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=843643 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `facture_proformat_export`
+--
+
+DROP TABLE IF EXISTS `facture_proformat_export`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `facture_proformat_export` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fere_id` int DEFAULT NULL,
+  `numero` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `date_crea` datetime DEFAULT NULL,
+  `montant` double NOT NULL,
+  `frais_admin` double NOT NULL DEFAULT '0',
+  `penalite` double NOT NULL DEFAULT '0',
+  `userid` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_E9021EE53BD990F4` (`fere_id`),
+  KEY `IDX_DATEPRO2` (`date_crea`),
+  CONSTRAINT `FK_E9021EE53BD990F4` FOREIGN KEY (`fere_id`) REFERENCES `fere` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=329151 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fere`
+--
+
+DROP TABLE IF EXISTS `fere`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `fere` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `mvt_id` int DEFAULT NULL,
+  `mandataire_id` int DEFAULT NULL,
+  `agent_id` int DEFAULT NULL,
+  `mode_transport_id` int DEFAULT NULL,
+  `pays_origine_id` int DEFAULT NULL,
+  `province_origine_id` int DEFAULT NULL,
+  `pays_destination_id` int DEFAULT NULL,
+  `mode_paie_id` int DEFAULT NULL,
+  `devise_fob_id` int DEFAULT NULL,
+  `devise_fret_id` int DEFAULT NULL,
+  `transporteur_id` int DEFAULT NULL,
+  `lieu_depart_id` int DEFAULT NULL,
+  `lieu_arrive_id` int DEFAULT NULL,
+  `lieu_sortie_id` int DEFAULT NULL,
+  `incoterm_id` int DEFAULT NULL,
+  `type_status_id` int DEFAULT NULL,
+  `numero` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `num_val` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `annee` date DEFAULT '1970-01-01',
+  `date_crea` date DEFAULT '1970-01-01',
+  `date_val` date DEFAULT '1970-01-01',
+  `date_maj` date DEFAULT '1970-01-01',
+  `date_redresser` datetime DEFAULT '1970-01-01 00:00:00',
+  `num_guice` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero_titre` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `date_etablie` date DEFAULT '1970-01-01',
+  `nbre20` int DEFAULT NULL,
+  `nbre40` int DEFAULT NULL,
+  `nbre10` int DEFAULT NULL,
+  `nbre_roro` int DEFAULT NULL,
+  `volume` decimal(15,3) DEFAULT NULL,
+  `poids_net` decimal(15,3) DEFAULT NULL,
+  `poids_brut` decimal(15,3) DEFAULT NULL,
+  `nom_imp` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `nif_imp` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `telephone_imp` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `adresse_imp` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `email_imp` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `fax_imp` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `nom_exp` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `nif_exp` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `user_val` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `valeur_taux` double NOT NULL DEFAULT '1.15',
+  `user_print` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `user_cree` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `user_redresser` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `telephone_exp` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `fax_exp` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `adresse_exp` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `email_exp` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `fret_base` decimal(15,2) DEFAULT NULL,
+  `montant_fret` decimal(15,2) DEFAULT NULL,
+  `montant_assurance` decimal(15,2) DEFAULT NULL,
+  `montant_fob` decimal(15,2) DEFAULT NULL,
+  `frais_additionnel` decimal(14,2) DEFAULT NULL,
+  `up_total` decimal(15,3) DEFAULT NULL,
+  `teu_total` decimal(15,3) DEFAULT NULL,
+  `status_id` int DEFAULT NULL,
+  `montant_baf` decimal(15,2) DEFAULT NULL,
+  `montant_caf` decimal(15,2) DEFAULT NULL,
+  `montant_surch_ot_hc` decimal(15,2) DEFAULT NULL,
+  `montant_congo_surch` decimal(15,2) DEFAULT NULL,
+  `montant_autre_surch` decimal(15,2) DEFAULT NULL,
+  `fret_redresser` decimal(15,2) DEFAULT NULL,
+  `date_depart` date DEFAULT NULL,
+  `date_arrive` date DEFAULT '1970-01-01',
+  `representant` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero_voyage` varchar(14) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `marque_transport` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero_immatriculation` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `moyen_de_transport` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `destination_final` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `scan_titre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `colissage` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `scan_valeur` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `souscripteur_id` int DEFAULT NULL,
+  `bureau_sortie_id` int DEFAULT NULL,
+  `num_abonement` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `banque_titre` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_51C4F0ABE6783A1` (`mvt_id`),
+  KEY `IDX_51C4F0ABF347EFB` (`mandataire_id`),
+  KEY `IDX_51C4F0AB3414710B` (`agent_id`),
+  KEY `IDX_51C4F0AB1305CBCC` (`mode_transport_id`),
+  KEY `IDX_51C4F0ABA6A34A66` (`pays_origine_id`),
+  KEY `IDX_51C4F0AB2F63D403` (`province_origine_id`),
+  KEY `IDX_51C4F0ABD3356485` (`pays_destination_id`),
+  KEY `IDX_51C4F0AB62E04A07` (`mode_paie_id`),
+  KEY `IDX_51C4F0AB3F2BDB8` (`devise_fob_id`),
+  KEY `IDX_51C4F0ABB27781CA` (`devise_fret_id`),
+  KEY `IDX_51C4F0AB97C86FA4` (`transporteur_id`),
+  KEY `IDX_51C4F0ABC16565FC` (`lieu_depart_id`),
+  KEY `IDX_51C4F0AB9B651DFF` (`lieu_arrive_id`),
+  KEY `IDX_51C4F0ABA31542E4` (`lieu_sortie_id`),
+  KEY `IDX_51C4F0AB7055C866` (`incoterm_id`),
+  KEY `IDX_51C4F0ABDF3141AD` (`type_status_id`),
+  KEY `IDX_51C4F0ABA0B466D6` (`souscripteur_id`),
+  KEY `IDX_51C4F0AB21BA57DD` (`bureau_sortie_id`),
+  KEY `IDX_51C4F0AB58207E03` (`mandataire_id`),
+  CONSTRAINT `FK_51C4F0AB1305CBCC` FOREIGN KEY (`mode_transport_id`) REFERENCES `mode_transport` (`id`),
+  CONSTRAINT `FK_51C4F0AB21BA57DD` FOREIGN KEY (`bureau_sortie_id`) REFERENCES `lieux` (`id`),
+  CONSTRAINT `FK_51C4F0AB2F63D403` FOREIGN KEY (`province_origine_id`) REFERENCES `province` (`id`),
+  CONSTRAINT `FK_51C4F0AB3414710B` FOREIGN KEY (`agent_id`) REFERENCES `agent_portuaire` (`id`),
+  CONSTRAINT `FK_51C4F0AB3F2BDB8` FOREIGN KEY (`devise_fob_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_51C4F0AB58207E03` FOREIGN KEY (`mandataire_id`) REFERENCES `mandataire` (`id`),
+  CONSTRAINT `FK_51C4F0AB62E04A07` FOREIGN KEY (`mode_paie_id`) REFERENCES `mode_paiement` (`id`),
+  CONSTRAINT `FK_51C4F0AB7055C866` FOREIGN KEY (`incoterm_id`) REFERENCES `incoterm` (`id`),
+  CONSTRAINT `FK_51C4F0AB97C86FA4` FOREIGN KEY (`transporteur_id`) REFERENCES `transporteur` (`id`),
+  CONSTRAINT `FK_51C4F0AB9B651DFF` FOREIGN KEY (`lieu_arrive_id`) REFERENCES `port` (`id`),
+  CONSTRAINT `FK_51C4F0ABA0B466D6` FOREIGN KEY (`souscripteur_id`) REFERENCES `souscripteur` (`id`),
+  CONSTRAINT `FK_51C4F0ABA31542E4` FOREIGN KEY (`lieu_sortie_id`) REFERENCES `port` (`id`),
+  CONSTRAINT `FK_51C4F0ABA6A34A66` FOREIGN KEY (`pays_origine_id`) REFERENCES `pays` (`id`),
+  CONSTRAINT `FK_51C4F0ABB27781CA` FOREIGN KEY (`devise_fret_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_51C4F0ABC16565FC` FOREIGN KEY (`lieu_depart_id`) REFERENCES `port` (`id`),
+  CONSTRAINT `FK_51C4F0ABD3356485` FOREIGN KEY (`pays_destination_id`) REFERENCES `pays` (`id`),
+  CONSTRAINT `FK_51C4F0ABDF3141AD` FOREIGN KEY (`type_status_id`) REFERENCES `type_status` (`id`),
+  CONSTRAINT `FK_51C4F0ABE6783A1` FOREIGN KEY (`mvt_id`) REFERENCES `mouvement` (`id`),
+  CONSTRAINT `FK_51C4F0ABF347EFB` FOREIGN KEY (`mandataire_id`) REFERENCES `mandataire` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=335715 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `feri`
+--
+
+DROP TABLE IF EXISTS `feri`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `feri` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `mvt_id` int DEFAULT NULL,
+  `produit_id` int DEFAULT NULL,
+  `agent_id` int DEFAULT NULL,
+  `mode_transport_id` int DEFAULT NULL,
+  `pays_origine_id` int DEFAULT NULL,
+  `pays_destination_id` int DEFAULT NULL,
+  `mode_paie_id` int DEFAULT NULL,
+  `devise_fob_id` int DEFAULT NULL,
+  `devise_fret_id` int DEFAULT NULL,
+  `incoterm_id` int DEFAULT NULL,
+  `numero` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `num_val` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `annee` date DEFAULT NULL,
+  `date_crea` date DEFAULT NULL,
+  `date_val` date DEFAULT NULL,
+  `date_maj` date DEFAULT NULL,
+  `num_guice` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero_titre` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `date_etablie` date DEFAULT NULL,
+  `nbre20` int DEFAULT NULL,
+  `nbre40` int DEFAULT NULL,
+  `nbre10` int DEFAULT NULL,
+  `nbre_roro` int DEFAULT NULL,
+  `volume` decimal(15,3) DEFAULT NULL,
+  `poids_net` decimal(15,3) DEFAULT '0.000',
+  `poids_brut` decimal(15,3) DEFAULT '0.000',
+  `nom_imp` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `nif_imp` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `telephone_imp` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `adresse_imp` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `email_imp` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `fax_imp` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `nom_exp` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `nif_exp` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `telephone_exp` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `fax_exp` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `adresse_exp` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `email_exp` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `fret_base` decimal(15,2) DEFAULT NULL,
+  `montant_fret` decimal(15,2) DEFAULT NULL,
+  `montant_assurance` decimal(15,2) DEFAULT NULL,
+  `montant_fob` decimal(15,2) DEFAULT NULL,
+  `frais_additionnel` decimal(15,2) DEFAULT NULL,
+  `up_total` decimal(15,3) DEFAULT NULL,
+  `teu_total` decimal(15,2) DEFAULT NULL,
+  `montant_baf` decimal(15,2) DEFAULT NULL,
+  `montant_caf` decimal(15,2) DEFAULT NULL,
+  `montant_surch_ot_hc` decimal(15,2) DEFAULT NULL,
+  `montant_congo_surch` decimal(15,2) DEFAULT NULL,
+  `montant_autre_surch` decimal(15,2) DEFAULT NULL,
+  `fret_redresser` decimal(15,2) DEFAULT NULL,
+  `transporteur_id` int DEFAULT NULL,
+  `lieu_depart_id` int DEFAULT NULL,
+  `lieu_arrive_id` int DEFAULT NULL,
+  `date_depart` date DEFAULT NULL,
+  `date_arrive` date DEFAULT NULL,
+  `representant` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero_voyage` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `destination_final` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `moyen_de_transport` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `status_id` int DEFAULT '0',
+  `user_val` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `user_cree` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `user_print` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `valeur_taux` double DEFAULT '1.15',
+  `type_status_id` int DEFAULT NULL,
+  `scan_titre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `colissage` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `scan_valeur` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `date_redresser` datetime DEFAULT '1970-01-01 00:00:00',
+  `user_redresser` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `OldNumero` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `user_maj` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero_titre_svce` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `devise_ass_id` int DEFAULT NULL,
+  `devise_aut_id` int DEFAULT NULL,
+  `est_annule` tinyint(1) DEFAULT '0',
+  `carte_abo` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `est_corrige` tinyint(1) NOT NULL DEFAULT '0',
+  `disable` tinyint(1) NOT NULL DEFAULT '0',
+  `est_controler_dfm` tinyint(1) NOT NULL DEFAULT '0',
+  `est_controler_dtfm` tinyint(1) NOT NULL DEFAULT '0',
+  `hash_id_qr` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `estactif` int DEFAULT NULL,
+  `estverif` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNQ_HASH_ID_QR` (`hash_id_qr`),
+  KEY `IDX_5872BC80E6783A1` (`mvt_id`),
+  KEY `IDX_5872BC80F347EFB` (`produit_id`),
+  KEY `IDX_5872BC803414710B` (`agent_id`),
+  KEY `IDX_5872BC801305CBCC` (`mode_transport_id`),
+  KEY `IDX_5872BC80A6A34A66` (`pays_origine_id`),
+  KEY `IDX_5872BC80D3356485` (`pays_destination_id`),
+  KEY `IDX_5872BC8062E04A07` (`mode_paie_id`),
+  KEY `IDX_5872BC803F2BDB8` (`devise_fob_id`),
+  KEY `IDX_5872BC80B27781CA` (`devise_fret_id`),
+  KEY `IDX_5872BC807055C866` (`incoterm_id`),
+  KEY `IDX_5872BC8097C86FA4` (`transporteur_id`),
+  KEY `IDX_5872BC80C16565FC` (`lieu_depart_id`),
+  KEY `IDX_5872BC809B651DFF` (`lieu_arrive_id`),
+  KEY `IDX_5872BC80DF3141AD` (`type_status_id`),
+  KEY `IDX_5872BC805342C779` (`devise_ass_id`),
+  KEY `IDX_5872BC8041D50A60` (`devise_aut_id`),
+  CONSTRAINT `FK_5872BC801305CBCC` FOREIGN KEY (`mode_transport_id`) REFERENCES `mode_transport` (`id`),
+  CONSTRAINT `FK_5872BC803414710B` FOREIGN KEY (`agent_id`) REFERENCES `agent_portuaire` (`id`),
+  CONSTRAINT `FK_5872BC803F2BDB8` FOREIGN KEY (`devise_fob_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_5872BC8041D50A60` FOREIGN KEY (`devise_aut_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_5872BC805342C779` FOREIGN KEY (`devise_ass_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_5872BC8062E04A07` FOREIGN KEY (`mode_paie_id`) REFERENCES `mode_paiement` (`id`),
+  CONSTRAINT `FK_5872BC807055C866` FOREIGN KEY (`incoterm_id`) REFERENCES `incoterm` (`id`),
+  CONSTRAINT `FK_5872BC8097C86FA4` FOREIGN KEY (`transporteur_id`) REFERENCES `transporteur` (`id`),
+  CONSTRAINT `FK_5872BC809B651DFF` FOREIGN KEY (`lieu_arrive_id`) REFERENCES `port` (`id`),
+  CONSTRAINT `FK_5872BC80A6A34A66` FOREIGN KEY (`pays_origine_id`) REFERENCES `pays` (`id`),
+  CONSTRAINT `FK_5872BC80B27781CA` FOREIGN KEY (`devise_fret_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_5872BC80C16565FC` FOREIGN KEY (`lieu_depart_id`) REFERENCES `port` (`id`),
+  CONSTRAINT `FK_5872BC80D3356485` FOREIGN KEY (`pays_destination_id`) REFERENCES `pays` (`id`),
+  CONSTRAINT `FK_5872BC80DF3141AD` FOREIGN KEY (`type_status_id`) REFERENCES `type_status` (`id`),
+  CONSTRAINT `FK_5872BC80E6783A1` FOREIGN KEY (`mvt_id`) REFERENCES `mouvement` (`id`),
+  CONSTRAINT `FK_5872BC80F347EFB` FOREIGN KEY (`produit_id`) REFERENCES `mandataire` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=910070 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `forfait_continuite`
+--
+
+DROP TABLE IF EXISTS `forfait_continuite`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `forfait_continuite` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `maximum` double NOT NULL,
+  `date_debut` datetime NOT NULL,
+  `date_fin` datetime DEFAULT NULL,
+  `minimum` double NOT NULL,
+  `nombre` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fournisseur`
+--
+
+DROP TABLE IF EXISTS `fournisseur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `fournisseur` (
+  `id` int NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `nif` varchar(50) DEFAULT NULL,
+  `telephone` varchar(50) NOT NULL,
+  `fax` varchar(50) DEFAULT NULL,
+  `adresse` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `frais_export`
+--
+
+DROP TABLE IF EXISTS `frais_export`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `frais_export` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `valeur` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ftaux`
+--
+
+DROP TABLE IF EXISTS `ftaux`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ftaux` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `datecours` date NOT NULL,
+  `um1` varchar(50) NOT NULL,
+  `taux` double(10,6) NOT NULL,
+  `um2` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `futilisateur`
+--
+
+DROP TABLE IF EXISTS `futilisateur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `futilisateur` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `utilisateur` varchar(10) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `passwd` varchar(24) DEFAULT NULL,
+  `sousgroupe` int NOT NULL,
+  `codeagportuaire` int NOT NULL,
+  `role` varchar(50) DEFAULT NULL,
+  `indicemvt` varchar(2) NOT NULL DEFAULT 'I',
+  `numtel` varchar(50) NOT NULL,
+  `adressemail` varchar(50) NOT NULL,
+  `fonction` varchar(50) NOT NULL,
+  `identite` int NOT NULL,
+  `actif` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `FK_AGSGROUP` (`sousgroupe`),
+  KEY `FK_AGPORT` (`codeagportuaire`),
+  CONSTRAINT `FK_AGPORT` FOREIGN KEY (`codeagportuaire`) REFERENCES `agent_portuaire` (`id`),
+  CONSTRAINT `FK_AGSGROUP` FOREIGN KEY (`sousgroupe`) REFERENCES `sousgroupe` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+DROP TRIGGER IF EXISTS futilisateur_after_insert;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `futilisateur_after_insert` AFTER INSERT ON `futilisateur` FOR EACH ROW BEGIN
+         INSERT INTO app_activity_logs (table_name, row_id, action, new_value, user) 
+         VALUES ('futilisateur', NEW.id, 'INSERT', 
+			JSON_OBJECT('id', NEW.id, 'utilisateur', NEW.utilisateur, 'nom', NEW.nom, 'passwd', NEW.passwd, 'sousgroupe', NEW.sousgroupe,
+			'codeagportuaire', NEW.codeagportuaire, 'role', NEW.role, 'indicemvt', NEW.indicemvt, 'numtel', NEW.numtel, 'adressemail', NEW.adressemail,
+			'fonction', NEW.fonction, 'identite', NEW.identite, 'actif', NEW.actif), USER());
+     END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+DROP TRIGGER IF EXISTS futilisateur_after_update;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `futilisateur_after_update` AFTER UPDATE ON `futilisateur` FOR EACH ROW BEGIN
+         INSERT INTO app_activity_logs (table_name, row_id, action, old_value, new_value, user) 
+         VALUES ('futilisateur', NEW.id, 'UPDATE', 
+			JSON_OBJECT('id', OLD.id, 'utilisateur', OLD.utilisateur, 'nom', OLD.nom, 'passwd', OLD.passwd, 'sousgroupe', OLD.sousgroupe,
+			'codeagportuaire', OLD.codeagportuaire, 'role', OLD.role, 'indicemvt', OLD.indicemvt, 'numtel', OLD.numtel, 'adressemail', OLD.adressemail,
+			'fonction', OLD.fonction, 'identite', OLD.identite, 'actif', OLD.actif),
+			JSON_OBJECT('id', NEW.id, 'utilisateur', NEW.utilisateur, 'nom', NEW.nom, 'passwd', NEW.passwd, 'sousgroupe', NEW.sousgroupe,
+			'codeagportuaire', NEW.codeagportuaire, 'role', NEW.role, 'indicemvt', NEW.indicemvt, 'numtel', NEW.numtel, 'adressemail', NEW.adressemail,
+			'fonction', NEW.fonction, 'identite', NEW.identite, 'actif', NEW.actif), USER());
+     END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+DROP TRIGGER IF EXISTS futilisateur_after_delete;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `futilisateur_after_delete` AFTER DELETE ON `futilisateur` FOR EACH ROW BEGIN
+         INSERT INTO app_activity_logs (table_name, row_id, action, old_value, user) 
+         VALUES ('futilisateur', OLD.id, 'DELETE', 
+			JSON_OBJECT('id', OLD.id, 'utilisateur', OLD.utilisateur, 'nom', OLD.nom, 'passwd', OLD.passwd, 'sousgroupe', OLD.sousgroupe,
+			'codeagportuaire', OLD.codeagportuaire, 'role', OLD.role, 'indicemvt', OLD.indicemvt, 'numtel', OLD.numtel, 'adressemail', OLD.adressemail,
+			'fonction', OLD.fonction, 'identite', OLD.identite, 'actif', OLD.actif),
+			USER());
+     END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `groupe`
+--
+
+DROP TABLE IF EXISTS `groupe`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `groupe` (
+  `code` int NOT NULL AUTO_INCREMENT,
+  `description` varchar(50) NOT NULL,
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `incoterm`
+--
+
+DROP TABLE IF EXISTS `incoterm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `incoterm` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `code` varchar(3) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `juridiction`
+--
+
+DROP TABLE IF EXISTS `juridiction`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `juridiction` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idMandataire` int NOT NULL,
+  `type` varchar(12) NOT NULL,
+  `codeiso` varchar(5) NOT NULL,
+  `libelle` varchar(100) NOT NULL,
+  `idMode` int NOT NULL,
+  `actif` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mandataire_fkey2` (`idMandataire`),
+  KEY `mode_fkey` (`idMode`)
+) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `juridictionnew`
+--
+
+DROP TABLE IF EXISTS `juridictionnew`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `juridictionnew` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idagent` int NOT NULL,
+  `type` varchar(12) NOT NULL,
+  `idtype` int NOT NULL,
+  `actif` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=769 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `lieux`
+--
+
+DROP TABLE IF EXISTS `lieux`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `lieux` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(40) NOT NULL,
+  `code` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `lieuxagentport`
+--
+
+DROP TABLE IF EXISTS `lieuxagentport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `lieuxagentport` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(50) NOT NULL,
+  `code` varchar(8) NOT NULL,
+  `anciencode` varchar(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=548 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `mandataire`
+--
+
+DROP TABLE IF EXISTS `mandataire`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mandataire` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(2) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `adresse` varchar(255) DEFAULT NULL,
+  `telephone` varchar(15) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `fax` varchar(100) DEFAULT NULL,
+  `refcontrat` varchar(100) DEFAULT NULL,
+  `logo` longblob,
+  `zone` int DEFAULT '0',
+  `texte_bas_page` text,
+  `numero_facture` int NOT NULL DEFAULT '1',
+  `ref_banque` varchar(255) DEFAULT NULL,
+  `typemvt` varchar(2) DEFAULT NULL,
+  `sigle` varchar(50) DEFAULT NULL,
+  `nature` varchar(10) DEFAULT NULL,
+  `numero_cion` int NOT NULL DEFAULT '1',
+  `actif` smallint NOT NULL DEFAULT '0',
+  `categorie` varchar(15) DEFAULT 'partenaires',
+  `sous_type` varchar(10) DEFAULT 'externes',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `migration_versions`
+--
+
+DROP TABLE IF EXISTS `migration_versions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migration_versions` (
+  `version` varchar(255) NOT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `mode_conditionnement`
+--
+
+DROP TABLE IF EXISTS `mode_conditionnement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mode_conditionnement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(255) NOT NULL,
+  `code` varchar(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `mode_paiement`
+--
+
+DROP TABLE IF EXISTS `mode_paiement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mode_paiement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `mode_transport`
+--
+
+DROP TABLE IF EXISTS `mode_transport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mode_transport` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `modele_conteneur`
+--
+
+DROP TABLE IF EXISTS `modele_conteneur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `modele_conteneur` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(6) NOT NULL,
+  `libelle` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `mouchard`
+--
+
+DROP TABLE IF EXISTS `mouchard`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mouchard` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `feri_id` int NOT NULL,
+  `date_crea` datetime NOT NULL,
+  `texte` text NOT NULL,
+  `user_create` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mouchard_feri_fkey` (`feri_id`),
+  CONSTRAINT `mouchard_feri_fkey` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1512 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `mouvement`
+--
+
+DROP TABLE IF EXISTS `mouvement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mouvement` (
+  `id` int NOT NULL,
+  `libelle` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `mouvement_comptable`
+--
+
+DROP TABLE IF EXISTS `mouvement_comptable`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mouvement_comptable` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `devise_id` int DEFAULT NULL,
+  `mandataire_id` int DEFAULT NULL,
+  `banque_id` int DEFAULT NULL,
+  `montant` decimal(15,2) DEFAULT NULL,
+  `solde_avant` decimal(15,2) DEFAULT NULL,
+  `type_mouvement` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `reference` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `libelle_mouvement` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `taux` decimal(10,2) DEFAULT NULL,
+  `datemvt` date NOT NULL,
+  `soldeantcred` double(10,2) NOT NULL DEFAULT '0.00',
+  `soldeantdeb` double(10,2) NOT NULL DEFAULT '0.00',
+  `soldeclocred` double(10,2) NOT NULL DEFAULT '0.00',
+  `soldeclodeb` double(10,2) NOT NULL DEFAULT '0.00',
+  `soldeavantreport` double(10,2) DEFAULT '0.00',
+  `piece` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `IDX_A85E2E6AF4445056` (`devise_id`),
+  KEY `IDX_A85E2E6ACE062FF9` (`mandataire_id`),
+  KEY `IDX_A85E2E6A37E080D9` (`banque_id`),
+  KEY `IDX_A85E2E6A58207E03` (`mandataire_id`),
+  CONSTRAINT `FK_A85E2E6A37E080D9` FOREIGN KEY (`banque_id`) REFERENCES `banques` (`id`),
+  CONSTRAINT `FK_A85E2E6A58207E03` FOREIGN KEY (`mandataire_id`) REFERENCES `agent_portuaire` (`id`),
+  CONSTRAINT `FK_A85E2E6AF4445056` FOREIGN KEY (`devise_id`) REFERENCES `devise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=231152 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `pays`
+--
+
+DROP TABLE IF EXISTS `pays`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pays` (
+  `code_iso_num` varchar(3) NOT NULL,
+  `nom` varchar(100) NOT NULL,
+  `code_iso_alpha2` varchar(2) NOT NULL,
+  `code_iso_alpha3` varchar(3) NOT NULL,
+  `nationalite` varchar(50) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idmandataire` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=509 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `permissions`
+--
+
+DROP TABLE IF EXISTS `permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `permissions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `permissions_menu`
+--
+
+DROP TABLE IF EXISTS `permissions_menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `permissions_menu` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `port`
+--
+
+DROP TABLE IF EXISTS `port`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `port` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `codeiso` varchar(10) NOT NULL,
+  `designation` varchar(50) NOT NULL,
+  `pays_id` int NOT NULL,
+  `typelieu` varchar(50) NOT NULL,
+  `typemode` varchar(50) NOT NULL,
+  `localisation` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18835 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `produit`
+--
+
+DROP TABLE IF EXISTS `produit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `produit` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `pays_id` int DEFAULT NULL,
+  `code_imo_id` int DEFAULT NULL,
+  `chapitre_id` int NOT NULL,
+  `type_conditionnement_id` int DEFAULT NULL,
+  `code_harmo_id` int DEFAULT NULL,
+  `feri_id` int DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `nbrcolis` int DEFAULT NULL,
+  `longueur` int DEFAULT NULL,
+  `ref_occ_bivac` varchar(80) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_29A5EC27A6E44244` (`pays_id`),
+  KEY `IDX_29A5EC277A58EF18` (`code_imo_id`),
+  KEY `IDX_29A5EC276D435DE7` (`type_conditionnement_id`),
+  KEY `IDX_29A5EC276F61BF5C` (`code_harmo_id`),
+  KEY `IDX_29A5EC27710F2F4C` (`feri_id`),
+  KEY `FK_29A5EC271FBEEF7B` (`chapitre_id`),
+  CONSTRAINT `FK_29A5EC271FBEEF7B` FOREIGN KEY (`chapitre_id`) REFERENCES `chapproduit` (`id`),
+  CONSTRAINT `FK_29A5EC276D435DE7` FOREIGN KEY (`type_conditionnement_id`) REFERENCES `unite` (`id`),
+  CONSTRAINT `FK_29A5EC276F61BF5C` FOREIGN KEY (`code_harmo_id`) REFERENCES `code_harmonise` (`id`),
+  CONSTRAINT `FK_29A5EC27710F2F4C` FOREIGN KEY (`feri_id`) REFERENCES `feri` (`id`),
+  CONSTRAINT `FK_29A5EC277A58EF18` FOREIGN KEY (`code_imo_id`) REFERENCES `code_imo` (`id`),
+  CONSTRAINT `FK_29A5EC27A6E44244` FOREIGN KEY (`pays_id`) REFERENCES `pays` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1150642 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `produit_export`
+--
+
+DROP TABLE IF EXISTS `produit_export`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `produit_export` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code_imo_id` int DEFAULT NULL,
+  `type_conditionnement_id` int DEFAULT NULL,
+  `fere_id` int NOT NULL,
+  `chapitre_id` int DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `nbrcolis` int DEFAULT NULL,
+  `longueur` int DEFAULT NULL,
+  `ref_occ_bivac` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `poids` decimal(15,3) DEFAULT NULL,
+  `volume` decimal(15,3) DEFAULT NULL,
+  `unite_payante` decimal(15,3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_B5DEDDAE7A58EF18` (`code_imo_id`),
+  KEY `IDX_B5DEDDAE6D435DE7` (`type_conditionnement_id`),
+  KEY `IDX_B5DEDDAE1FBEEF7B` (`chapitre_id`),
+  KEY `IDX_B5DEDDAE3BD990F4` (`fere_id`),
+  CONSTRAINT `FK_B5DEDDAE1FBEEF7B` FOREIGN KEY (`chapitre_id`) REFERENCES `chapitre_export` (`id`),
+  CONSTRAINT `FK_B5DEDDAE3BD990F4` FOREIGN KEY (`fere_id`) REFERENCES `fere` (`id`),
+  CONSTRAINT `FK_B5DEDDAE6D435DE7` FOREIGN KEY (`type_conditionnement_id`) REFERENCES `unite` (`id`),
+  CONSTRAINT `FK_B5DEDDAE7A58EF18` FOREIGN KEY (`code_imo_id`) REFERENCES `code_imo` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=334251 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `province`
+--
+
+DROP TABLE IF EXISTS `province`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `province` (
+  `id` int NOT NULL,
+  `code` varchar(6) DEFAULT NULL,
+  `libelle` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `repartition`
+--
+
+DROP TABLE IF EXISTS `repartition`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `repartition` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `mandataire_id` int DEFAULT NULL,
+  `debut` date NOT NULL,
+  `fin` date DEFAULT NULL,
+  `pourcentage` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_82B791A058207E03` (`mandataire_id`),
+  CONSTRAINT `FK_82B791A058207E03` FOREIGN KEY (`mandataire_id`) REFERENCES `mandataire` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `representant`
+--
+
+DROP TABLE IF EXISTS `representant`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `representant` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `nif` varchar(50) NOT NULL,
+  `telephone` varchar(50) NOT NULL,
+  `fax` varchar(50) NOT NULL,
+  `adresse` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `roulier`
+--
+
+DROP TABLE IF EXISTS `roulier`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `roulier` (
+  `id` int NOT NULL,
+  `mode_condition_id` int NOT NULL,
+  `chassis` varchar(50) NOT NULL,
+  `poids` int NOT NULL,
+  `volume` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rupture_charge`
+--
+
+DROP TABLE IF EXISTS `rupture_charge`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rupture_charge` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `mode_transport_id` int DEFAULT NULL,
+  `nom_moyen` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `marque_moyen` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `immatriculation_moyen` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `numero_voyage` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `lieu_arrivee` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `date_arrive` date NOT NULL,
+  `date_depart` date NOT NULL,
+  `lieu_depart` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `valeur_fret` decimal(15,2) DEFAULT NULL,
+  `devise_id` int DEFAULT NULL,
+  `fere_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_70DAF6A41305CBCC` (`mode_transport_id`),
+  KEY `IDX_70DAF6A4F4445056` (`devise_id`),
+  KEY `IDX_70DAF6A43BD990F4` (`fere_id`),
+  CONSTRAINT `FK_70DAF6A41305CBCC` FOREIGN KEY (`mode_transport_id`) REFERENCES `mode_transport` (`id`),
+  CONSTRAINT `FK_70DAF6A43BD990F4` FOREIGN KEY (`fere_id`) REFERENCES `fere` (`id`),
+  CONSTRAINT `FK_70DAF6A4F4445056` FOREIGN KEY (`devise_id`) REFERENCES `devise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=998 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `secteur`
+--
+
+DROP TABLE IF EXISTS `secteur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `secteur` (
+  `idsecteur` int NOT NULL,
+  `libelle` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `secteur_activite`
+--
+
+DROP TABLE IF EXISTS `secteur_activite`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `secteur_activite` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `sigle` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `nom` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `service`
+--
+
+DROP TABLE IF EXISTS `service`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `service` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `direction_id` int DEFAULT NULL,
+  `code` varchar(3) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `libelle` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `compteur` int NOT NULL DEFAULT '1',
+  `codecarte` varchar(4) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_E19D9AD2AF73D997` (`direction_id`),
+  CONSTRAINT `FK_E19D9AD2AF73D997` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=336 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `souscripteur`
+--
+
+DROP TABLE IF EXISTS `souscripteur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `souscripteur` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `nif` varchar(20) DEFAULT NULL,
+  `telephone` varchar(15) DEFAULT NULL,
+  `fax` varchar(100) DEFAULT NULL,
+  `adresse` varchar(255) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `pays_id` int DEFAULT NULL,
+  `type_souscripteur_id` int DEFAULT NULL,
+  `rccm` varchar(25) DEFAULT NULL,
+  `id_national` varchar(25) DEFAULT NULL,
+  `siege_exploitation` varchar(50) DEFAULT NULL,
+  `responsable` varchar(100) DEFAULT NULL,
+  `libelle_principale` varchar(300) NOT NULL DEFAULT 'RAS',
+  `libelle_autre` varchar(300) DEFAULT NULL,
+  `secteur_primaire_id` int DEFAULT '0',
+  `secteur_secondaire_id` int DEFAULT '0',
+  `formejuridique` varchar(50) NOT NULL,
+  `etat` varchar(50) NOT NULL,
+  `sigle` varchar(50) NOT NULL,
+  `emplacement_id` int NOT NULL,
+  `servicegestionnaire` varchar(50) NOT NULL DEFAULT 'RAS',
+  `is_tva` smallint NOT NULL DEFAULT '1',
+  `validite` varchar(50) NOT NULL,
+  `idparent` int NOT NULL,
+  `typechargeur` varchar(50) NOT NULL,
+  `agence` varchar(50) DEFAULT NULL,
+  `idactivite_principale` int NOT NULL DEFAULT '0',
+  `ca` smallint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_87DB3DFDA6E44244` (`pays_id`),
+  KEY `IDX_87DB3DFD5780F2A2` (`type_souscripteur_id`),
+  CONSTRAINT `FK_87DB3DFD5780F2A2` FOREIGN KEY (`type_souscripteur_id`) REFERENCES `type_souscripteur` (`id`),
+  CONSTRAINT `FK_87DB3DFDA6E44244` FOREIGN KEY (`pays_id`) REFERENCES `pays` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35761 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sousgroupe`
+--
+
+DROP TABLE IF EXISTS `sousgroupe`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sousgroupe` (
+  `code` int NOT NULL AUTO_INCREMENT,
+  `description` varchar(50) NOT NULL,
+  `idgroupe` int NOT NULL,
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `soussecteur`
+--
+
+DROP TABLE IF EXISTS `soussecteur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `soussecteur` (
+  `idsoussecteur` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(50) NOT NULL,
+  `idsecteur` int NOT NULL,
+  PRIMARY KEY (`idsoussecteur`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `status`
+--
+
+DROP TABLE IF EXISTS `status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `status` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type_status_id` int DEFAULT NULL,
+  `date_crea` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `FK_7B00651CDF3141AD` (`type_status_id`),
+  CONSTRAINT `FK_7B00651CDF3141AD` FOREIGN KEY (`type_status_id`) REFERENCES `type_status` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=246 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tarif`
+--
+
+DROP TABLE IF EXISTS `tarif`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tarif` (
+  `id` int NOT NULL,
+  `conditionnement_id` int DEFAULT NULL,
+  `unite_id` int DEFAULT NULL,
+  `taux_uinitaire` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `titre_transport`
+--
+
+DROP TABLE IF EXISTS `titre_transport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `titre_transport` (
+  `id` int NOT NULL,
+  `numero` varchar(50) NOT NULL,
+  `dateetablissement` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `transbordement`
+--
+
+DROP TABLE IF EXISTS `transbordement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `transbordement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `voyage_id` int NOT NULL,
+  `date_depart` datetime NOT NULL,
+  `date_arrive` datetime NOT NULL,
+  `moyen_de_transport` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `lieu_depart_id` int DEFAULT NULL,
+  `lieu_arrive_id` int DEFAULT NULL,
+  `lib_lieu_depart` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `lib_lieu_arrive` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `numero_voyage` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `compteur` smallint DEFAULT NULL,
+  `mode_transport_id` int DEFAULT NULL,
+  `devise_fret_id` int DEFAULT NULL,
+  `montant_fret` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_BDA395CB68C9E5AF` (`voyage_id`),
+  KEY `FK_BDA395CBC16565FC` (`lieu_depart_id`),
+  KEY `FK_BDA395CB9B651DFF` (`lieu_arrive_id`),
+  KEY `IDX_BDA395CB1305CBCC` (`mode_transport_id`),
+  KEY `IDX_BDA395CBB27781CA` (`devise_fret_id`),
+  CONSTRAINT `FK_BDA395CB1305CBCC` FOREIGN KEY (`mode_transport_id`) REFERENCES `mode_transport` (`id`),
+  CONSTRAINT `FK_BDA395CB68C9E5AF` FOREIGN KEY (`voyage_id`) REFERENCES `feri` (`id`),
+  CONSTRAINT `FK_BDA395CB9B651DFF` FOREIGN KEY (`lieu_arrive_id`) REFERENCES `port` (`id`),
+  CONSTRAINT `FK_BDA395CBB27781CA` FOREIGN KEY (`devise_fret_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_BDA395CBC16565FC` FOREIGN KEY (`lieu_depart_id`) REFERENCES `port` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=78249 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `transbordement_ad`
+--
+
+DROP TABLE IF EXISTS `transbordement_ad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `transbordement_ad` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `continuite_id` int DEFAULT NULL,
+  `numero_voyage` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `moyen_transport` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `lib_lieu_depart` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `lib_lieu_arrive` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `date_depart` datetime NOT NULL,
+  `date_arrive` datetime NOT NULL,
+  `mode_transport_id` int DEFAULT NULL,
+  `devise_fret_id` int DEFAULT NULL,
+  `montant_fret` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_708BBA29262BE2C3` (`continuite_id`),
+  KEY `IDX_708BBA291305CBCC` (`mode_transport_id`),
+  KEY `IDX_708BBA29B27781CA` (`devise_fret_id`),
+  CONSTRAINT `FK_708BBA291305CBCC` FOREIGN KEY (`mode_transport_id`) REFERENCES `mode_transport` (`id`),
+  CONSTRAINT `FK_708BBA29262BE2C3` FOREIGN KEY (`continuite_id`) REFERENCES `continuite` (`id`),
+  CONSTRAINT `FK_708BBA29B27781CA` FOREIGN KEY (`devise_fret_id`) REFERENCES `devise` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `transporteur`
+--
+
+DROP TABLE IF EXISTS `transporteur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `transporteur` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `sigle` varchar(20) DEFAULT NULL,
+  `NomArmateur` varchar(100) DEFAULT NULL,
+  `adresse` varchar(150) DEFAULT NULL,
+  `nationalite` varchar(150) NOT NULL,
+  `contact` varchar(100) DEFAULT NULL,
+  `typetransp` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5028 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `type_conditionnement`
+--
+
+DROP TABLE IF EXISTS `type_conditionnement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `type_conditionnement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `mode_id` int DEFAULT NULL,
+  `devise_id` int DEFAULT NULL,
+  `libelle` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `code` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `montant` decimal(15,3) DEFAULT NULL,
+  `unite_fact` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `mvt_id` int DEFAULT NULL,
+  `montant1` decimal(15,3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_C87F7E4E77E5854A` (`mode_id`),
+  KEY `IDX_C87F7E4EF4445056` (`devise_id`),
+  KEY `IDX_C87F7E4E54909D02` (`mvt_id`),
+  KEY `IDX_C87F7E4EE6783A1` (`mvt_id`),
+  CONSTRAINT `FK_C87F7E4E54909D02` FOREIGN KEY (`mvt_id`) REFERENCES `devise` (`id`),
+  CONSTRAINT `FK_C87F7E4E77E5854A` FOREIGN KEY (`mode_id`) REFERENCES `mode_conditionnement` (`id`),
+  CONSTRAINT `FK_C87F7E4EE6783A1` FOREIGN KEY (`mvt_id`) REFERENCES `mouvement` (`id`),
+  CONSTRAINT `FK_C87F7E4EF4445056` FOREIGN KEY (`devise_id`) REFERENCES `devise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `type_conteneur`
+--
+
+DROP TABLE IF EXISTS `type_conteneur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `type_conteneur` (
+  `id` int NOT NULL,
+  `libelle` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `type_souscripteur`
+--
+
+DROP TABLE IF EXISTS `type_souscripteur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `type_souscripteur` (
+  `id` int NOT NULL,
+  `libelle` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `type_status`
+--
+
+DROP TABLE IF EXISTS `type_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `type_status` (
+  `id` int NOT NULL,
+  `libelle` varchar(50) NOT NULL,
+  `valeur` smallint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `typeconditionnement`
+--
+
+DROP TABLE IF EXISTS `typeconditionnement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `typeconditionnement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(2) NOT NULL,
+  `libelle` varchar(50) NOT NULL,
+  `codemodecondit` int NOT NULL,
+  `montant` double(10,2) NOT NULL,
+  `devise` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `unite`
+--
+
+DROP TABLE IF EXISTS `unite`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `unite` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(25) NOT NULL,
+  `code` varchar(3) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ville`
+--
+
+DROP TABLE IF EXISTS `ville`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ville` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `visualisation`
+--
+
+DROP TABLE IF EXISTS `visualisation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `visualisation` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `connect` varchar(5) NOT NULL,
+  `libelle` varchar(25) NOT NULL,
+  `view` varchar(5) NOT NULL,
+  `zone` varchar(13) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `ancien` varchar(50) NOT NULL,
+  `indice` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `visualisationagentport`
+--
+
+DROP TABLE IF EXISTS `visualisationagentport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `visualisationagentport` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idagentportprincipal` int NOT NULL,
+  `idagentportvisualiser` int NOT NULL,
+  `choix` varchar(50) NOT NULL,
+  `indicetype` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=136591 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `visualisationuserport`
+--
+
+DROP TABLE IF EXISTS `visualisationuserport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `visualisationuserport` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `identite` int NOT NULL,
+  `idvisualisation` int NOT NULL,
+  `choix` varchar(50) NOT NULL,
+  `indicetype` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=101508 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `voyage`
+--
+
+DROP TABLE IF EXISTS `voyage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `voyage` (
+  `id` int NOT NULL,
+  `transporteur_id` int DEFAULT NULL,
+  `representant` varchar(100) DEFAULT NULL,
+  `date_depart` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_arrive` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `mode_trans_id` int DEFAULT NULL,
+  `feri_id` int NOT NULL,
+  `numero_voyage` varchar(14) DEFAULT NULL,
+  `titre_id` int DEFAULT NULL,
+  `lieu_depart_id` int DEFAULT NULL,
+  `lieu_arrive_id` int DEFAULT NULL,
+  `destination_final_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `vrac`
+--
+
+DROP TABLE IF EXISTS `vrac`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `vrac` (
+  `id` int NOT NULL,
+  `mode_condition_id` int NOT NULL,
+  `volume` int NOT NULL,
+  `poids` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `zone`
+--
+
+DROP TABLE IF EXISTS `zone`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `zone` (
+  `id` int NOT NULL,
+  `libelle` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping routines for database 'feri_old_uat'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-06-14 23:00:39
